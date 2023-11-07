@@ -1,11 +1,25 @@
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
-import Box from "./components/Box";
+import Sphere from "./components/Sphere";
 import "./App.scss";
 
 function App() {
+  const SPHERE_NUMBER = 30;
+
+  const spheres = Array(SPHERE_NUMBER)
+    .fill()
+    .map((_, idx) => {
+      let x = -Math.random() * 10 + Math.random() * 10;
+      let y = -Math.random() * 10 + Math.random() * 10;
+      let z = -Math.random() * 10 + Math.random() * 10;
+      return <Sphere key={idx} position={[x, y, z]} />;
+    });
+
   return (
-    <>
+    <div id="site-container">
+      <div id="content-container">
+        <h1 id="hero-header">My Portfolio</h1>
+      </div>
       <Canvas>
         <ambientLight intensity={Math.PI / 2} />
         <spotLight
@@ -16,11 +30,10 @@ function App() {
           intensity={Math.PI}
         />
         <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
-        <Box position={[-1.2, 0, 0]} />
-        <Box position={[1.2, 0, 0]} />
-        <OrbitControls />
+        <object3D>{spheres}</object3D>
+        <OrbitControls enableZoom={true} />
       </Canvas>
-    </>
+    </div>
   );
 }
 
