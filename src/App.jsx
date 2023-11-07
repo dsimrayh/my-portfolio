@@ -6,14 +6,36 @@ import "./App.scss";
 function App() {
   const SPHERE_NUMBER = 30;
 
-  const spheres = Array(SPHERE_NUMBER)
+  const initialSphereArray = Array(SPHERE_NUMBER)
     .fill()
     .map((_, idx) => {
-      let x = -Math.random() * 10 + Math.random() * 10;
-      let y = -Math.random() * 10 + Math.random() * 10;
-      let z = -Math.random() * 10 + Math.random() * 10;
-      return <Sphere key={idx} position={[x, y, z]} />;
+      const x = -Math.random() * 10 + Math.random() * 10;
+      const y = -Math.random() * 10 + Math.random() * 10;
+      const z = -Math.random() * 10 + Math.random() * 10;
+      return (
+        <Sphere
+          key={idx}
+          index={idx}
+          firstRender={true}
+          position={[x, y, z]}
+          visible={idx === 0 ? false : true}
+        />
+      );
     });
+
+  const spheres = initialSphereArray.map((sphere, idx) => {
+    const [x, y, z] = sphere.props.position;
+    return (
+      <Sphere
+        key={idx}
+        index={idx}
+        firstRender={false}
+        sphereToLeft={idx === 0 ? null : initialSphereArray[idx - 1]}
+        position={[x, y, z]}
+        visible={idx === 0 ? false : true}
+      />
+    );
+  });
 
   return (
     <div id="site-container">
