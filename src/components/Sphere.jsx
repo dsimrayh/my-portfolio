@@ -1,5 +1,6 @@
 import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
+import * as THREE from "three";
 
 export default function Sphere(props) {
   const sphereRef = useRef();
@@ -9,6 +10,7 @@ export default function Sphere(props) {
   const SPHERE_SCALE_MIN = 0.25;
   const ANIMATION_SPEED = 0.25;
   const GAP = 1;
+  const LERP_FACTOR = 0.05;
 
   const scale =
     Math.random() * (SPHERE_SCALE_MAX - SPHERE_SCALE_MIN) + SPHERE_SCALE_MIN;
@@ -16,23 +18,23 @@ export default function Sphere(props) {
   function updateSpherePosition(index, elapsed) {
     if (index === 0) {
       sphereRef.current.position.x = Math.cos(elapsed * 2);
-      sphereRef.current.position.y = Math.cos(elapsed * 2);
-      sphereRef.current.position.z = Math.cos(elapsed * 2);
+      sphereRef.current.position.y = Math.sin(elapsed * 2);
+      sphereRef.current.position.z = Math.sin(elapsed * 2);
     }
 
     if (props.firstRender === false && index !== 0) {
-      sphereRef.current.position.x =
+      const vector = new THREE.Vector3(
         Math.cos(
           props.sphereToLeft.props.position[0] * elapsed * ANIMATION_SPEED,
-        ) * GAP;
-      sphereRef.current.position.y =
-        Math.cos(
+        ) * GAP,
+        Math.sin(
           props.sphereToLeft.props.position[1] * elapsed * ANIMATION_SPEED,
-        ) * GAP;
-      sphereRef.current.position.z =
+        ) * GAP,
         Math.cos(
           props.sphereToLeft.props.position[2] * elapsed * ANIMATION_SPEED,
-        ) * GAP;
+        ) * GAP,
+      );
+      sphereRef.current.position.lerp(vector, LERP_FACTOR);
     }
   }
 
