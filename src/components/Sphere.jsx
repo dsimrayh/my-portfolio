@@ -6,13 +6,13 @@ export default function Sphere(props) {
   const sphereRef = useRef();
 
   const INDEX = props.index;
-  const SPHERE_SCALE_MAX = 0.8;
-  const SPHERE_SCALE_MIN = 0.25;
+  const SPHERE_SCALE_MAX = 0.5;
+  const SPHERE_SCALE_MIN = 0.2;
   const ANIMATION_SPEED = 0.25;
-  const GAP = 1;
+  const GAP = 1.5;
   const LERP_FACTOR = 0.05;
 
-  const scale =
+  let scale =
     Math.random() * (SPHERE_SCALE_MAX - SPHERE_SCALE_MIN) + SPHERE_SCALE_MIN;
 
   function updateSpherePosition(index, elapsed) {
@@ -38,8 +38,26 @@ export default function Sphere(props) {
     }
   }
 
+  function updateSphereColor(index, elapsed) {
+    if (index !== 0 && index % 2 === 0) {
+      sphereRef.current.material.color.r = 0;
+      sphereRef.current.material.color.g =
+        (Math.abs(Math.cos(elapsed * 0.1)) + 0.3) * 0.5;
+      sphereRef.current.material.color.b =
+        (Math.abs(Math.sin(elapsed * 0.1)) + 0.3) * 0.5;
+    }
+    if (index !== 0 && index % 2 !== 0) {
+      sphereRef.current.material.color.r = 0;
+      sphereRef.current.material.color.g =
+        (Math.abs(Math.sin(elapsed * 0.175)) + 0.3) * 0.5;
+      sphereRef.current.material.color.b =
+        (Math.abs(Math.cos(elapsed * 0.175)) + 0.3) * 0.5;
+    }
+  }
+
   useFrame((state) => {
     updateSpherePosition(INDEX, state.clock.elapsedTime);
+    updateSphereColor(INDEX, state.clock.elapsedTime);
   });
 
   return (
@@ -47,8 +65,9 @@ export default function Sphere(props) {
       position={props.position}
       ref={sphereRef}
       scale={[scale, scale, scale]}
+      visible={INDEX === 0 ? false : true}
     >
-      <sphereGeometry args={[0.7, 24, 24]} />
+      <sphereGeometry args={[1, 24, 24]} />
       <meshStandardMaterial wireframe={false} color={"#03fcca"} />
     </mesh>
   );
