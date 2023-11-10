@@ -1,4 +1,7 @@
-$primary_color: #232525;
+@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@200;300;400&display=swap");
+
+$primary_color: #00030f;
+$header_font: "Barlow", sans-serif;
 
 * {
   margin: 0;
@@ -27,6 +30,10 @@ body,
 }
 
 #hero-header {
-  padding: 1rem;
-  text-align: center;
+  font-size: 7rem;
+  padding: 2rem;
+  font-family: $header_font;
+  font-weight: 400;
+  max-width: min-content;
+  line-height: 7rem;
 }

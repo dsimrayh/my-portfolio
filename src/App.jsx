@@ -4,7 +4,7 @@ import Sphere from "./components/Sphere";
 import "./App.scss";
 
 function App() {
-  const SPHERE_NUMBER = 50;
+  const SPHERE_NUMBER = 30;
 
   const initialSphereArray = Array(SPHERE_NUMBER)
     .fill()
@@ -33,16 +33,34 @@ function App() {
   return (
     <div id="site-container">
       <div id="content-container">
-        <h1 id="hero-header">My Portfolio</h1>
+        <h1 id="hero-header">Damian Simrayh</h1>
       </div>
       <Canvas>
         <spotLight
-          position={[-10, 10, 30]}
+          position={[-3, 10, -2]}
           angle={0.5}
           penumbra={1}
-          decay={0}
-          intensity={Math.PI}
+          decay={0.2}
+          intensity={0.5}
         />
+        <spotLight
+          position={[-3, 8, -2]}
+          angle={0.25}
+          penumbra={1}
+          decay={0.3}
+          intensity={1}
+        />
+        <spotLight
+          position={[-3, 6, -2]}
+          angle={0.15}
+          penumbra={1}
+          decay={0.4}
+          intensity={1.5}
+        />
+        <directionalLight position={[-6, 10, 10]} intensity={1.25} />
+        <directionalLight position={[0, 10, 10]} intensity={0.75} />
+        <directionalLight position={[4, 10, 10]} intensity={0.5} />
+        <ambientLight color={"#fff"} intensity={0.15} />
         <object3D>{spheres}</object3D>
         <OrbitControls enableZoom={true} />
       </Canvas>

@@ -1,6 +1,7 @@
 import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 import * as THREE from "three";
+import convertMousePosition from "../utils/convertMousePosition";
 
 export default function Sphere(props) {
   const sphereRef = useRef();
@@ -10,29 +11,35 @@ export default function Sphere(props) {
   const SPHERE_SCALE_MIN = 0.2;
   const ANIMATION_SPEED = 0.25;
   const GAP = 1.5;
-  const LERP_FACTOR = 0.05;
+  const LERP_FACTOR = 0.025;
 
   let scale =
     Math.random() * (SPHERE_SCALE_MAX - SPHERE_SCALE_MIN) + SPHERE_SCALE_MIN;
 
-  function updateSpherePosition(index, elapsed) {
+  function updateSpherePosition(index, elapsed, offset) {
     if (index === 0) {
-      sphereRef.current.position.x = Math.cos(elapsed * 2);
-      sphereRef.current.position.y = Math.sin(elapsed * 2);
-      sphereRef.current.position.z = Math.sin(elapsed * 2);
+      sphereRef.current.position.x = offset.x + Math.cos(elapsed * 2);
+      sphereRef.current.position.y = offset.y + Math.sin(elapsed * 2);
+      sphereRef.current.position.z = offset.z + Math.sin(elapsed * 2);
     }
 
     if (props.firstRender === false && index !== 0) {
       const vector = new THREE.Vector3(
-        Math.cos(
-          props.sphereToLeft.props.position[0] * elapsed * ANIMATION_SPEED,
-        ) * GAP,
-        Math.sin(
-          props.sphereToLeft.props.position[1] * elapsed * ANIMATION_SPEED,
-        ) * GAP,
-        Math.cos(
-          props.sphereToLeft.props.position[2] * elapsed * ANIMATION_SPEED,
-        ) * GAP,
+        offset.x +
+          Math.cos(
+            props.sphereToLeft.props.position[0] * elapsed * ANIMATION_SPEED,
+          ) *
+            GAP,
+        offset.y +
+          Math.sin(
+            props.sphereToLeft.props.position[1] * elapsed * ANIMATION_SPEED,
+          ) *
+            GAP,
+        offset.z +
+          Math.cos(
+            props.sphereToLeft.props.position[2] * elapsed * ANIMATION_SPEED,
+          ) *
+            GAP,
       );
       sphereRef.current.position.lerp(vector, LERP_FACTOR);
     }
@@ -56,7 +63,18 @@ export default function Sphere(props) {
   }
 
   useFrame((state) => {
-    updateSpherePosition(INDEX, state.clock.elapsedTime);
+    const mousePositionCoordinates = convertMousePosition(
+      state.pointer,
+      state.camera,
+    );
+
+    const offset = {
+      x: mousePositionCoordinates.x,
+      y: mousePositionCoordinates.y,
+      z: mousePositionCoordinates.z,
+    };
+
+    updateSpherePosition(INDEX, state.clock.elapsedTime, offset);
     updateSphereColor(INDEX, state.clock.elapsedTime);
   });
 
@@ -68,7 +86,7 @@ export default function Sphere(props) {
       visible={INDEX === 0 ? false : true}
     >
       <sphereGeometry args={[1, 24, 24]} />
-      <meshStandardMaterial wireframe={false} color={"#03fcca"} />
+      <meshStandardMaterial color={"#03fcca"} />
     </mesh>
   );
 }
