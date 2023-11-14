@@ -34,6 +34,7 @@ function App() {
     <div id="site-container">
       <div id="content-container">
         <h1 id="hero-header">Damian Simrayh</h1>
+        <p id="hero-subtext">Front end web developer based in Chicago IL</p>
       </div>
       <Canvas>
         <spotLight

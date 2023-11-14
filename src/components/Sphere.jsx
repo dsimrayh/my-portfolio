@@ -86,7 +86,7 @@ export default function Sphere(props) {
       visible={INDEX === 0 ? false : true}
     >
       <sphereGeometry args={[1, 24, 24]} />
-      <meshStandardMaterial color={"#03fcca"} />
+      <meshStandardMaterial roughness={0.5} color={"#03fcca"} />
     </mesh>
   );
 }
