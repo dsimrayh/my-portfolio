@@ -7,8 +7,8 @@ export default function Sphere(props) {
   const sphereRef = useRef();
 
   const INDEX = props.index;
-  const SPHERE_SCALE_MAX = 0.35;
-  const SPHERE_SCALE_MIN = 0.15;
+  const SPHERE_SCALE_MAX = 0.15; // 0.35?
+  const SPHERE_SCALE_MIN = 0.05; // 0.15?
   const ANIMATION_SPEED = 0.05;
   const GAP = 5;
   const LERP_FACTOR = 0.1;

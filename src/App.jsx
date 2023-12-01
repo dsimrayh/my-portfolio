@@ -4,7 +4,7 @@ import Sphere from "./components/Sphere";
 import "./App.scss";
 
 function App() {
-  const SPHERE_NUMBER = 100;
+  const SPHERE_NUMBER = 200; // 100?
 
   const initialSphereArray = Array(SPHERE_NUMBER)
     .fill()
@@ -37,6 +37,30 @@ function App() {
           Hi, I&apos;m <span id="name">Damian.</span>
         </h1>
         <p id="hero-subtext">I&apos;m a full stack developer.</p>
+        <div id="test">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iste amet
+          ducimus odit hic voluptas itaque ipsa cum in tempora consectetur fugit
+          eos quos facilis accusamus quasi, sit cupiditate labore tempore, dicta
+          sed atque nisi aliquid! Architecto ab eaque temporibus vero maiores
+          eum aut commodi ipsa dolorem sunt quas ipsum officiis, est, eligendi,
+          voluptatum et laborum repellendus assumenda quasi? Eligendi totam
+          dolorem quisquam maiores aliquam explicabo. Incidunt velit placeat,
+          nobis cupiditate iure voluptas saepe eligendi, consectetur vero est
+          tempora omnis a optio labore iste eveniet. Quasi animi excepturi
+          dolorum quibusdam neque dolore delectus! Placeat quas repellendus
+          expedita ipsam? Modi nulla adipisci odit aliquam, vitae debitis quasi.
+          Eaque voluptas, fugiat accusamus earum officiis est a, quas atque
+          quidem iusto laborum voluptatum cupiditate? Nesciunt omnis a odio
+          autem eius suscipit nemo dolorem totam. Ipsam, quam voluptas deleniti
+          asperiores esse iste et exercitationem laboriosam repellendus quos
+          explicabo cumque temporibus totam incidunt ducimus laborum earum
+          soluta accusantium aut enim voluptatibus eveniet voluptates.
+          Voluptatum aut expedita laudantium, ducimus voluptas at deleniti
+          maiores aliquam nihil itaque rem officiis quos, facilis atque
+          doloremque quas similique totam nisi. Dolore magni, voluptatem ipsum
+          temporibus, cum laudantium fuga impedit explicabo perspiciatis ratione
+          architecto, autem dolores laboriosam soluta sequi consequatur sed in.
+        </div>
       </div>
       <Canvas>
         <fog attach="fog" color="black" near={2} far={12} />
@@ -50,31 +74,6 @@ function App() {
           intensity={0.5}
           position={[0, 0, 3]}
         />
-        {/* <spotLight
-          position={[-3, 10, -2]}
-          angle={0.5}
-          penumbra={1}
-          decay={0.2}
-          intensity={0.5}
-        />
-        <spotLight
-          position={[-3, 8, -2]}
-          angle={0.25}
-          penumbra={1}
-          decay={0.3}
-          intensity={1}
-        />
-        <spotLight
-          position={[-3, 6, -2]}
-          angle={0.15}
-          penumbra={1}
-          decay={0.4}
-          intensity={1.5}
-        />
-        <directionalLight position={[-6, 10, 10]} intensity={1.25} />
-        <directionalLight position={[0, 10, 10]} intensity={0.75} />
-        <directionalLight position={[4, 10, 10]} intensity={0.5} />
-        <ambientLight color={"#fff"} intensity={0.15} /> */}
         <object3D>{spheres}</object3D>
         {/* <OrbitControls enableZoom={true} /> */}
       </Canvas>

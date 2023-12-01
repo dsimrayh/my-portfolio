@@ -3,8 +3,6 @@
 
 // PRIMARY STYLES ***********************************
 
-//#00030f
-
 $background: linear-gradient(180deg, #000, #01061b);
 $header_font: "Barlow", sans-serif;
 $subtext_font: "Montserrat", sans-serif;
@@ -65,4 +63,15 @@ body,
 #name {
   @extend %header-text-shadow;
   color: $primary-color;
+}
+
+// TESTING READABILITY
+
+#test {
+  background-color: rgba(1, 6, 20, 0.9);
+  line-height: 4rem;
+  padding: 1rem;
+  font-family: $subtext_font;
+  border-radius: 10px;
+  margin-top: 3rem;
 }
