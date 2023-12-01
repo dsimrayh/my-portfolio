@@ -7,11 +7,11 @@ export default function Sphere(props) {
   const sphereRef = useRef();
 
   const INDEX = props.index;
-  const SPHERE_SCALE_MAX = 0.5;
-  const SPHERE_SCALE_MIN = 0.2;
-  const ANIMATION_SPEED = 0.25;
-  const GAP = 1.5;
-  const LERP_FACTOR = 0.025;
+  const SPHERE_SCALE_MAX = 0.35;
+  const SPHERE_SCALE_MIN = 0.15;
+  const ANIMATION_SPEED = 0.05;
+  const GAP = 5;
+  const LERP_FACTOR = 0.1;
 
   let scale =
     Math.random() * (SPHERE_SCALE_MAX - SPHERE_SCALE_MIN) + SPHERE_SCALE_MIN;
@@ -48,17 +48,15 @@ export default function Sphere(props) {
   function updateSphereColor(index, elapsed) {
     if (index !== 0 && index % 2 === 0) {
       sphereRef.current.material.color.r = 0;
-      sphereRef.current.material.color.g =
-        (Math.abs(Math.cos(elapsed * 0.1)) + 0.3) * 0.5;
+      sphereRef.current.material.color.g = 0.05;
       sphereRef.current.material.color.b =
-        (Math.abs(Math.sin(elapsed * 0.1)) + 0.3) * 0.5;
+        (Math.abs(Math.sin(elapsed * 0.1)) + 0.7) * 0.5;
     }
     if (index !== 0 && index % 2 !== 0) {
       sphereRef.current.material.color.r = 0;
-      sphereRef.current.material.color.g =
-        (Math.abs(Math.sin(elapsed * 0.175)) + 0.3) * 0.5;
+      sphereRef.current.material.color.g = 0.05;
       sphereRef.current.material.color.b =
-        (Math.abs(Math.cos(elapsed * 0.175)) + 0.3) * 0.5;
+        (Math.abs(Math.cos(elapsed * 0.175)) + 0.7) * 0.5;
     }
   }
 
@@ -86,7 +84,7 @@ export default function Sphere(props) {
       visible={INDEX === 0 ? false : true}
     >
       <sphereGeometry args={[1, 24, 24]} />
-      <meshStandardMaterial roughness={0.5} color={"#03fcca"} />
+      <meshBasicMaterial color={"#03fcca"} flatShading={false} />
     </mesh>
   );
 }

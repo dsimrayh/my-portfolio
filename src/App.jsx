@@ -1,10 +1,10 @@
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
+// import { OrbitControls } from "@react-three/drei";
 import Sphere from "./components/Sphere";
 import "./App.scss";
 
 function App() {
-  const SPHERE_NUMBER = 30;
+  const SPHERE_NUMBER = 100;
 
   const initialSphereArray = Array(SPHERE_NUMBER)
     .fill()
@@ -33,11 +33,24 @@ function App() {
   return (
     <div id="site-container">
       <div id="content-container">
-        <h1 id="hero-header">Damian Simrayh</h1>
-        <p id="hero-subtext">Front end web developer based in Chicago IL</p>
+        <h1 id="hero-header">
+          Hi, I&apos;m <span id="name">Damian.</span>
+        </h1>
+        <p id="hero-subtext">I&apos;m a full stack developer.</p>
       </div>
       <Canvas>
-        <spotLight
+        <fog attach="fog" color="black" near={2} far={12} />
+        <hemisphereLight
+          skyColor={0x111111}
+          groundColor={0x000000}
+          intensity={0.5}
+        />
+        <directionalLight
+          color={0xffffff}
+          intensity={0.5}
+          position={[0, 0, 3]}
+        />
+        {/* <spotLight
           position={[-3, 10, -2]}
           angle={0.5}
           penumbra={1}
@@ -61,9 +74,9 @@ function App() {
         <directionalLight position={[-6, 10, 10]} intensity={1.25} />
         <directionalLight position={[0, 10, 10]} intensity={0.75} />
         <directionalLight position={[4, 10, 10]} intensity={0.5} />
-        <ambientLight color={"#fff"} intensity={0.15} />
+        <ambientLight color={"#fff"} intensity={0.15} /> */}
         <object3D>{spheres}</object3D>
-        <OrbitControls enableZoom={true} />
+        {/* <OrbitControls enableZoom={true} /> */}
       </Canvas>
     </div>
   );
