@@ -1,7 +1,11 @@
 import * as THREE from "three";
 
 export default function convertMousePosition(mousePosition, camera) {
-  const vector = new THREE.Vector3(mousePosition.x, mousePosition.y, 0.5);
+  const vector = new THREE.Vector3(
+    mousePosition.x / 4,
+    mousePosition.y / 4,
+    0.5,
+  );
   let position = new THREE.Vector3();
 
   vector.unproject(camera);
