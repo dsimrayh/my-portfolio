@@ -6,7 +6,8 @@
 $background: linear-gradient(180deg, #000, #01061b);
 $header_font: "Barlow", sans-serif;
 $subtext_font: "Montserrat", sans-serif;
-$primary-color: #d81159;
+$primary-red: #d81159;
+$primary-blue: rgb(0, 162, 255);
 
 * {
   margin: 0;
@@ -40,6 +41,15 @@ body,
   transition: opacity 2s ease;
 }
 
+#canvas-wrapper {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+// WELCOME MODAL STYLES ***********************************
+
 #welcome-modal {
   position: fixed;
   top: 0;
@@ -69,11 +79,39 @@ body,
   text-transform: uppercase;
 }
 
-#canvas-wrapper {
-  position: fixed;
-  top: 0;
+// NAVBAR STYLES
+
+#navbar {
   width: 100%;
-  height: 100%;
+  padding-top: 2rem;
+  // border: 1px solid red;
+
+  #navbar-ul {
+    list-style-type: none;
+    font-family: $subtext_font;
+    font-size: 1.25rem;
+    font-weight: 500;
+
+    display: flex;
+    justify-content: flex-end;
+    gap: 4rem;
+  }
+
+  .navbar-li {
+    background-image: linear-gradient(90deg, $primary-red, $primary-blue);
+    background-size: 0% 3px;
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    cursor: pointer;
+    pointer-events: all;
+    transition: all 0.1s ease;
+  }
+
+  .navbar-li:hover {
+    transform: scale(1.2);
+    background-size: 100% 3px;
+    transition: all 0.3s ease;
+  }
 }
 
 // HEADER STYLES ***********************************
@@ -91,7 +129,7 @@ body,
   line-height: 4rem;
 
   #name {
-    color: $primary-color;
+    color: $primary-red;
   }
 }
 
@@ -100,6 +138,21 @@ body,
   font-family: $header_font;
   font-size: 5rem;
   font-weight: 500;
+}
+
+#links {
+  cursor: pointer;
+  pointer-events: all;
+
+  img {
+    transform: scale(0.9);
+    margin-top: 1rem;
+    margin-right: 1rem;
+  }
+
+  img:hover {
+    transform: scale(1);
+  }
 }
 
 // TESTING READABILITY / BACKDROP
@@ -117,5 +170,5 @@ body,
   border-radius: 10px;
   margin-top: 3rem;
 
-  backdrop-filter: saturate(150%) blur(45px); // remove for no-support browsers
+  // backdrop-filter: saturate(150%) blur(45px); // remove for no-support browsers
 }

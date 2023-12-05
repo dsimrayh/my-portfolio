@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import Github from "../assets/github.svg";
+import LinkedIn from "../assets/linkedin.svg";
 
 export default function Content() {
   const [contentVisible, setContentVisible] = useState(false);
@@ -25,10 +27,30 @@ export default function Content() {
         <p id="welcome-text">Welcome</p>
       </div>
       <div id="content-container" className={contentVisible ? "visible" : null}>
+        <nav id="navbar">
+          <ul id="navbar-ul">
+            <li className="navbar-li">About</li>
+            <li className="navbar-li">Skills</li>
+            <li className="navbar-li">Projects</li>
+            <li className="navbar-li">Contact</li>
+          </ul>
+        </nav>
         <h1 id="hero-header">
           Hi, I&apos;m <span id="name">Damian.</span>
         </h1>
         <p id="hero-subtext">I&apos;m a full stack developer.</p>
+        <div id="links">
+          <a
+            href="https://github.com/dsimrayh"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img src={Github} alt="github"></img>
+          </a>
+          <a href="#">
+            <img src={LinkedIn} alt="linkedin"></img>
+          </a>
+        </div>
         <div id="test">
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iste amet
           ducimus odit hic voluptas itaque ipsa cum in tempora consectetur fugit
